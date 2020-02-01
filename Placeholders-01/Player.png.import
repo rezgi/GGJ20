@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LevelBloc.jpg-d995e5abfbc00db465e555395b7d7046.stex"
+path="res://.import/Player.png-1ddd1667fbcddfba8e8c866b5bf8cd49.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Placeholders-01/LevelBloc.jpg"
-dest_files=[ "res://.import/LevelBloc.jpg-d995e5abfbc00db465e555395b7d7046.stex" ]
+source_file="res://Placeholders-01/Player.png"
+dest_files=[ "res://.import/Player.png-1ddd1667fbcddfba8e8c866b5bf8cd49.stex" ]
 
 [params]
 

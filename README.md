@@ -10,11 +10,15 @@ Submission to the Global Game Jam 2020
 - Sword input time delay *
 - Swap player direction *
 - Player & sword hitbox *
-- WASD & ZQSD same ? to test
-- Player health
-- Spike bloc logic
+- Spike bloc logic *
+- Collision issues, need to learn
 - Enemy logic : walk / attack
 - Enemy & attack hitbox
-- Level spikes
 - Level cut vines
+- Player health
+- Enemy health
 - Game phases
+
+## Bugs
+- WASD & ZQSD same ? to test
+- On many collisions crash

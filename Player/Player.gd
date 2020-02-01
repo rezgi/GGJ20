@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal enemy_touched()
+
 var vel := Vector2.ZERO
 var can_slash := true
 const FLOOR_NORMAL := Vector2.UP
@@ -15,7 +17,7 @@ export var hurt_push := Vector2(-200, -400)
 func _ready():
 	disable_sword()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	vel.y += gravity
 	
 	# Inputs
@@ -41,13 +43,15 @@ func _physics_process(delta):
 			activate_sword()
 	
 	# Collision detection
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		if collision.collider.name == "Spike-01":
-			$AnimationPlayer.play("Hurt")
-			vel = hurt_push
-			vel = move_and_slide(vel, FLOOR_NORMAL)
-			# remove HP
+#	for i in get_slide_count():
+#		var collision = get_slide_collision(i)
+#		if collision.collider.name == "Spike-01":
+#			$AnimationPlayer.play("Hurt")
+#			vel = hurt_push
+#			vel = move_and_slide(vel, FLOOR_NORMAL)
+#		elif collision.collider.name == "Enemy-01":
+#			print("enemy !")
+#			emit_signal("enemy_touched")
 
 
 func activate_sword():
@@ -71,3 +75,14 @@ func _on_Timer_Sword_timeout():
 
 func _on_Timer_Sword_delay_timeout():
 	can_slash = true
+
+
+func _on_Enemy_Dectector_body_entered(body):
+	if body.name == "TileMap":
+		return
+	if body.name == "Enemy-01" or "Spike-01":
+		print(body.name)
+#		hurt()
+
+func hurt():
+	print("ouch!")

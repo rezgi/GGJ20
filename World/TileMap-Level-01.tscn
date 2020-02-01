@@ -6,13 +6,13 @@ polygon = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
 
-[sub_resource type="StreamTexture" id=4]
+[sub_resource type="StreamTexture" id=3]
 flags = 4
 load_path = "res://.import/LevelBloc.jpg-d995e5abfbc00db465e555395b7d7046.stex"
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=4]
 0/name = "LevelBloc.jpg 0"
-0/texture = SubResource( 4 )
+0/texture = SubResource( 3 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 128, 128 )
@@ -30,7 +30,7 @@ load_path = "res://.import/LevelBloc.jpg-d995e5abfbc00db465e555395b7d7046.stex"
 0/z_index = 0
 
 [node name="TileMap" type="TileMap"]
-tile_set = SubResource( 3 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 128, 128 )
 collision_layer = 4
 format = 1

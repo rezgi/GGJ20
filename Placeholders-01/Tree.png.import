@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Apple.png-29e468123d4fb99e949e73dc24051011.stex"
+path="res://.import/Tree.png-6f1d23b5cba6ac673988cd15a50ce752.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Placeholders-01/Apple.png"
-dest_files=[ "res://.import/Apple.png-29e468123d4fb99e949e73dc24051011.stex" ]
+source_file="res://Placeholders-01/Tree.png"
+dest_files=[ "res://.import/Tree.png-6f1d23b5cba6ac673988cd15a50ce752.stex" ]
 
 [params]
 

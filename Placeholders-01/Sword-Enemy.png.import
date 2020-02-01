@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sword.png-96c539600a5adb9db6e621216492a356.stex"
+path="res://.import/Sword-Enemy.png-2e46e4f196d714f28d97112a5979f39f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/Placeholders-01/Sword.png"
-dest_files=[ "res://.import/Sword.png-96c539600a5adb9db6e621216492a356.stex" ]
+source_file="res://Placeholders-01/Sword-Enemy.png"
+dest_files=[ "res://.import/Sword-Enemy.png-2e46e4f196d714f28d97112a5979f39f.stex" ]
 
 [params]
 
