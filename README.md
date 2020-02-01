@@ -2,11 +2,14 @@
 Submission to the Global Game Jam 2020
 
 ## ToDo Dev
-- Draw placeholders
-- Player actions : run / jump
-- Basic level blocs : floor / walls
+- Draw placeholders *
+- Player actions : run / jump *
+- Basic level blocs : floor / walls *
+- Add Sword
 - Player slash
 - Player & sword hitbox
+- Player health
+- Spike bloc logic
 - Enemy logic : walk / attack
 - Enemy & attack hitbox
 - Level spikes
