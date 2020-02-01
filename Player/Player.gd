@@ -10,12 +10,15 @@ export var gravity := 100
 export var jump_height := 1000
 export var sword_duration := .4
 export var sword_delay := .6
+export var hurt_push := Vector2(-200, -400)
 
 func _ready():
 	disable_sword()
 
 func _physics_process(delta):
 	vel.y += gravity
+	
+	# Inputs
 	if Input.is_action_pressed("ui_right"):
 		vel.x = min(vel.x + speed, max_speed)
 		scale.x = scale.y * 1
@@ -28,12 +31,24 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		vel.y = -jump_height
 	
+	# Movement
 	vel.x = lerp(vel.x, 0, .1)
 	vel = move_and_slide(vel, FLOOR_NORMAL)
 
+	# Slash
 	if Input.is_action_just_pressed("ui_action"):
 		if can_slash:
 			activate_sword()
+	
+	# Collision detection
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.name == "Spike-01":
+			$AnimationPlayer.play("Hurt")
+			vel = hurt_push
+			vel = move_and_slide(vel, FLOOR_NORMAL)
+			# remove HP
+
 
 func activate_sword():
 	$Sword.visible = true
