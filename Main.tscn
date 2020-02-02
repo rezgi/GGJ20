@@ -14,9 +14,11 @@ tile_data = PoolIntArray( 327680, 0, 0, 327695, 0, 0, 393216, 0, 0, 393223, 0, 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 224, 896 )
+hurt_push = Vector2( -1000, -400 )
 
 [node name="Spike-01" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1088, 768 )
+position = Vector2( 1088, 1024 )
 
 [node name="Enemy-01" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1408, 896 )
+direction = -1

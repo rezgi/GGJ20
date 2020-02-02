@@ -5,14 +5,13 @@
 [ext_resource path="res://Placeholders-01/Sword.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 80 )
+extents = Vector2( 48, 80 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 64, 16 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Hurt"
-length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite_player:modulate")
 tracks/0/interp = 1
@@ -20,17 +19,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.188235, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.188235, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.188235, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.188235, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.188235, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.188235, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.188235, 0, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "Idle"
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 48, 64 )
+extents = Vector2( 32, 64 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 2
@@ -38,8 +37,9 @@ script = ExtResource( 2 )
 speed = 400
 max_speed = 1000
 jump_height = 1400
-sword_delay = 0.8
-hurt_push = Vector2( 0, -400 )
+sword_duration = 0.2
+sword_delay = 0.4
+hurt_push = Vector2( -3000, -400 )
 
 [node name="Sprite_player" type="Sprite" parent="."]
 position = Vector2( 0, -96 )
@@ -72,12 +72,17 @@ one_shot = true
 anims/Hurt = SubResource( 3 )
 anims/Idle = SubResource( 4 )
 
-[node name="Enemy_Dectector" type="Area2D" parent="."]
+[node name="Timer_Hurt_Delay" type="Timer" parent="."]
+one_shot = true
 
-[node name="CollisionShape2D-Front" type="CollisionShape2D" parent="Enemy_Dectector"]
-modulate = Color( 0.25098, 0.0666667, 0.701961, 1 )
-position = Vector2( 0, -80 )
+[node name="enemy_attack" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_attack"]
+modulate = Color( 0.0470588, 0, 0.380392, 1 )
+position = Vector2( 0, -64 )
 shape = SubResource( 5 )
+[connection signal="body_entered" from="Sword" to="." method="_on_Sword_body_entered"]
 [connection signal="timeout" from="Sword/Timer_Sword" to="." method="_on_Timer_Sword_timeout"]
 [connection signal="timeout" from="Sword/Timer_Sword_delay" to="." method="_on_Timer_Sword_delay_timeout"]
-[connection signal="body_entered" from="Enemy_Dectector" to="." method="_on_Enemy_Dectector_body_entered"]
+[connection signal="timeout" from="Timer_Hurt_Delay" to="." method="_on_Timer_Hurt_Delay_timeout"]
+[connection signal="area_entered" from="enemy_attack" to="." method="_on_enemy_attack_area_entered"]
