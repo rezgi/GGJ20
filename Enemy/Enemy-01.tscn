@@ -10,25 +10,23 @@ extents = Vector2( 48, 96 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 80, 16 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "Idle"
-length = 2.0
-loop = true
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 32, 96 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Hurt"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("Sprite_enemy:modulate")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 2 ),
-"transitions": PoolRealArray( 1, 1.31951, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -32 ), Vector2( 0, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.137255, 0.294118, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0.137255, 0.294118, 1, 1 ), Color( 1, 1, 1, 1 ) ]
 }
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 32, 96 )
 
 [node name="Enemy-01" type="KinematicBody2D"]
 collision_layer = 2
@@ -56,22 +54,18 @@ shape = SubResource( 2 )
 [node name="Timer_Sword" type="Timer" parent="Enemy_Sword"]
 one_shot = true
 
-[node name="Timer_Sword_delay" type="Timer" parent="Enemy_Sword"]
-one_shot = true
+[node name="Player_Attack_Detector" type="Area2D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 3 )
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Attack_Detector"]
 modulate = Color( 0.0627451, 0.0431373, 0.752941, 1 )
 position = Vector2( 0, -96 )
 shape = SubResource( 4 )
 
-[node name="Timer_Attack_Pattern" type="Timer" parent="."]
-wait_time = 2.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hurt = SubResource( 5 )
+
+[node name="timer_attack" type="Timer" parent="."]
+wait_time = 0.6
 [connection signal="timeout" from="Enemy_Sword/Timer_Sword" to="." method="_on_Timer_Sword_timeout"]
-[connection signal="timeout" from="Enemy_Sword/Timer_Sword_delay" to="." method="_on_Timer_Sword_delay_timeout"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="timeout" from="Timer_Attack_Pattern" to="." method="_on_Timer_Attack_Pattern_timeout"]
+[connection signal="area_entered" from="Player_Attack_Detector" to="." method="_on_Area2D_area_entered"]
+[connection signal="timeout" from="timer_attack" to="." method="_on_timer_attack_timeout"]

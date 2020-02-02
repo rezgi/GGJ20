@@ -81,7 +81,9 @@ one_shot = true
 modulate = Color( 0.0470588, 0, 0.380392, 1 )
 position = Vector2( 0, -64 )
 shape = SubResource( 5 )
-[connection signal="body_entered" from="Sword" to="." method="_on_Sword_body_entered"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
 [connection signal="timeout" from="Sword/Timer_Sword" to="." method="_on_Timer_Sword_timeout"]
 [connection signal="timeout" from="Sword/Timer_Sword_delay" to="." method="_on_Timer_Sword_delay_timeout"]
 [connection signal="timeout" from="Timer_Hurt_Delay" to="." method="_on_Timer_Hurt_Delay_timeout"]

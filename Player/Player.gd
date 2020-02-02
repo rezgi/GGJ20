@@ -5,6 +5,7 @@ var can_slash := true
 var can_be_hurt := true
 var direction := 1
 var player_hp := 5
+var apples_collected := 0
 
 const FLOOR_NORMAL := Vector2.UP
 
@@ -53,7 +54,6 @@ func _physics_process(_delta):
 			if collision.collider.name == "Spike-01": hurt()
 			if collision.collider.name == "Enemy-01": hurt()
 
-
 func activate_sword():
 	$Sword.visible = true
 	$Sword/CollisionShape2D.disabled = false
@@ -75,10 +75,6 @@ func _on_Timer_Sword_timeout():
 func _on_Timer_Sword_delay_timeout():
 	can_slash = true
 
-func _on_Sword_body_entered(body):
-	if body.name == "Enemy-01":
-		hurt()
-
 func _on_Timer_Hurt_Delay_timeout():
 	can_be_hurt = true
 
@@ -98,11 +94,9 @@ func die():
 	queue_free()
 	# Game over screen
 
-
-
-
 func _on_enemy_attack_area_entered(area):
-#	if area.name == "Enemy_sword":
-#		hurt()
-#		print(area.name)
-	pass
+	if area.name == "Enemy_Sword":
+		hurt()
+	if area.name == "apple_area":
+		apples_collected += 1
+		print(apples_collected)
