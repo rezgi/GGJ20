@@ -16,6 +16,7 @@ export var direction := 1
 func _ready():
 	disable_sword()
 	scale.x = scale.y * direction
+	$AnimatedSprite.play("default")
 
 func activate_sword():
 	$Enemy_Sword.visible = true

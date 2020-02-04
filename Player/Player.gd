@@ -29,15 +29,21 @@ func _physics_process(_delta):
 		vel.x = min(vel.x + speed, max_speed)
 		direction = 1
 		scale.x = scale.y * direction
+#		$player_anim.flip_h = false
+		$player_anim.play("default")
 	elif Input.is_action_pressed("ui_left"):
 		vel.x = max(vel.x - speed, -max_speed)
 		direction = -1
 		scale.x = scale.y * direction
+#		$player_anim.flip_h = true
+		$player_anim.play("default")
 	else:
 		vel.x = 0
+#		$player_anim.play("default")
 	
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		vel.y = -jump_height
+#		$player_anim.play("default")
 	
 	# Movement
 	vel.x = lerp(vel.x, 0, .1)
